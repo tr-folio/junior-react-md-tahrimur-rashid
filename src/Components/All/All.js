@@ -39,7 +39,7 @@ class All extends React.Component {
             `})
         }).then(response => response.json())
         .then((data) => {
-            console.log(data.data.category.products);
+            // console.log(data.data.category.products);
             this.setState({allProducts: data.data.category.products});
         })
     }

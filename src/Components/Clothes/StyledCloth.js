@@ -1,22 +1,22 @@
 import styled from "styled-components";
 
-export const SingleProductCard = styled.div`
+export const ClothCard = styled.div`
     width: 250px;
     margin: 0 auto;
 `;
 
-export const SingleProductImg = styled.img`
+export const ClothImg = styled.img`
     width: 250px;
     height: 250px;
 `;
 
-export const SingleProductName = styled.p`
+export const ClothName = styled.p`
     margin-bottom: 5px;
     color: gray;
     text-align: left;
 `;
 
-export const SingleProductPrice = styled.p`
+export const ClothPrice = styled.p`
     margin-top: 0;
     text-align: left;
 `;
