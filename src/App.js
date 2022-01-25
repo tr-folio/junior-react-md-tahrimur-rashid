@@ -6,6 +6,13 @@ import NotFound from './Components/NotFound/NotFound';
 import Tech from './Components/Tech/Tech';
 
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.displayNone = {
+      display: 'none'
+    };
+  }
+
   displayAll() {
     window.location.pathname = "/all";
   }
@@ -17,10 +24,6 @@ class App extends React.Component {
   }
 
   render() {
-    const displayNone = {
-      display: 'none'
-    }
-
     window.onload = function() {
       const currentPath = window.location.pathname;
 
@@ -61,10 +64,10 @@ class App extends React.Component {
           <button onClick={this.displayTech}>Tech</button> &nbsp;
         </p>
         <div id="page-container">
-          <div id="all" style={displayNone}><All/></div>
-          <div id="clothes" style={displayNone}><Clothes/></div>
-          <div id="tech" style={displayNone}><Tech/></div>
-          <div id="not-found" style={displayNone}><NotFound/></div>
+          <div id="all" style={this.displayNone}><All/></div>
+          <div id="clothes" style={this.displayNone}><Clothes/></div>
+          <div id="tech" style={this.displayNone}><Tech/></div>
+          <div id="not-found" style={this.displayNone}><NotFound/></div>
         </div>
       </div>
     );
