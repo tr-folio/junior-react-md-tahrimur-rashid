@@ -1,14 +1,22 @@
 import React from "react";
+import { 
+    SingleProductCard, 
+    SingleProductImg,
+    SingleProductName,
+    SingleProductPrice
+} from "./StyledSingleProduct";
 
 class SingleProduct extends React.Component {
     render() {
         return (
             <div>
-                <div>
-                    <img src={this.props.singleProduct.gallery} width="190" alt="image-not-found"/>
-                </div>
-                <h4>{this.props.singleProduct.name}</h4>
-                <h4>${this.props.singleProduct.prices[0].amount}</h4>
+                <SingleProductCard>
+                    <div>
+                        <SingleProductImg src={this.props.singleProduct.gallery}/>
+                    </div>
+                    <SingleProductName>{this.props.singleProduct.name}</SingleProductName>
+                    <SingleProductPrice>${this.props.singleProduct.prices[0].amount}</SingleProductPrice>
+                </SingleProductCard>
             </div>
         )
     }

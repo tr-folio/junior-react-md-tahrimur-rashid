@@ -4,6 +4,15 @@ import All from './Components/All/All';
 import Clothes from './Components/Clothes/Clothes';
 import NotFound from './Components/NotFound/NotFound';
 import Tech from './Components/Tech/Tech';
+import {
+  HeaderDiv,
+  HeaderButton,
+  NavMenusDiv,
+  ShoppingBagIconDiv,
+  CurrencyCartDiv,
+  CurrencyCartButton,
+  ShoppingBagIcon
+} from "./StyledAppJs";
 
 class App extends React.Component {
   constructor(props) {
@@ -57,12 +66,20 @@ class App extends React.Component {
 
     return (
       <div className="App">
-        <h1>Junior React Assignment</h1>
-        <p>
-          <button onClick={this.displayAll}>All</button> &nbsp;
-          <button onClick={this.displayClothes}>Clothes</button> &nbsp;
-          <button onClick={this.displayTech}>Tech</button> &nbsp;
-        </p>
+        <HeaderDiv>
+          <NavMenusDiv>
+            <HeaderButton onClick={this.displayAll}>All</HeaderButton>
+            <HeaderButton onClick={this.displayClothes}>Clothes</HeaderButton>
+            <HeaderButton onClick={this.displayTech}>Tech</HeaderButton>
+          </NavMenusDiv>
+          <ShoppingBagIconDiv>
+            <ShoppingBagIcon>Shopping Bag Icon</ShoppingBagIcon>
+          </ShoppingBagIconDiv>
+          <CurrencyCartDiv>
+            <CurrencyCartButton>Currency</CurrencyCartButton>
+            <CurrencyCartButton>Cart</CurrencyCartButton>
+          </CurrencyCartDiv>
+        </HeaderDiv> <br/> <br/>
         <div id="page-container">
           <div id="all" style={this.displayNone}><All/></div>
           <div id="clothes" style={this.displayNone}><Clothes/></div>
