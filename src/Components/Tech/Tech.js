@@ -1,5 +1,11 @@
 import React from "react";
-import { TechProductsDiv, TechProductsH1 } from "./StyledTech";
+import SingleTech from "./SingleTech";
+import { 
+    TechProductsContainer, 
+    TechProductsDiv, 
+    TechProductsGrid, 
+    TechProductsH1 
+} from "./StyledTech";
 
 class Tech extends React.Component {
     constructor(props) {
@@ -42,6 +48,11 @@ class Tech extends React.Component {
         return (
             <TechProductsDiv>
                 <TechProductsH1>Tech</TechProductsH1>
+                <TechProductsContainer>
+                    <TechProductsGrid>
+                        {this.state.techProducts.map(singleTech => <SingleTech key={singleTech.id} singleTech={singleTech}></SingleTech>)}
+                    </TechProductsGrid>
+                </TechProductsContainer>
             </TechProductsDiv>
         )
     }

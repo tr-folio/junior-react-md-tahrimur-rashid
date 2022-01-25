@@ -3,7 +3,6 @@ import styled from "styled-components";
 export const TechProductsDiv = styled.div`
     width: 1280px;
     margin: 0 auto;
-    background: yellow;
     @media only screen and (max-width: 1280px) {
         width: 900px;
     }
@@ -22,11 +21,11 @@ export const TechProductsH1 = styled.h1`
     text-align: left;
 `;
 
-export const AllProductsContainer = styled.div`
+export const TechProductsContainer = styled.div`
     background: white;
 `;
 
-export const AllProductsGrid = styled.div`
+export const TechProductsGrid = styled.div`
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     @media only screen and (max-width: 768px) {
