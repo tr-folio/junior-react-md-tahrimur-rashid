@@ -35,7 +35,10 @@ class SingleProduct extends React.Component {
     }
 
     addProductToCart() {
-        window.alert(this.props.singleProduct.inStock);
+        if (this.props.singleProduct.inStock) {
+            localStorage.setItem("beforeCart", this.props.singleProduct.id);
+            window.location.pathname = "/add-to-cart";
+        }
     }
 
     render() {

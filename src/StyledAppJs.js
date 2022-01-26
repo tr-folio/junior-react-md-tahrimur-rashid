@@ -8,6 +8,7 @@ export const HeaderDiv = styled.div`
     }
     @media only screen and (max-width: 992px) {
         width: 700px;
+        height: 50px;
     }
     @media only screen and (max-width: 768px) {
         width: 500px;

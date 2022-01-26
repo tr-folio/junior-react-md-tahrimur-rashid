@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import AddToCart from './Components/AddToCart/AddToCart';
 import All from './Components/All/All';
 import Clothes from './Components/Clothes/Clothes';
 import NotFound from './Components/NotFound/NotFound';
@@ -62,26 +63,37 @@ class App extends React.Component {
         document.getElementById('all').style.display = 'block';
         document.getElementById('clothes').style.display = 'none';
         document.getElementById('tech').style.display = 'none';
+        document.getElementById('add-to-cart').style.display = 'none';
         document.getElementById('not-found').style.display = 'none';
       } else if (currentPath === "/all") {
         document.getElementById('all').style.display = 'block';
         document.getElementById('clothes').style.display = 'none';
         document.getElementById('tech').style.display = 'none';
+        document.getElementById('add-to-cart').style.display = 'none';
         document.getElementById('not-found').style.display = 'none';
       } else if (currentPath === "/clothes") {
         document.getElementById('all').style.display = 'none';
         document.getElementById('clothes').style.display = 'block';
         document.getElementById('tech').style.display = 'none';
+        document.getElementById('add-to-cart').style.display = 'none';
         document.getElementById('not-found').style.display = 'none';
       } else if (currentPath === "/tech") {
         document.getElementById('all').style.display = 'none';
         document.getElementById('clothes').style.display = 'none';
         document.getElementById('tech').style.display = 'block';
+        document.getElementById('add-to-cart').style.display = 'none';
+        document.getElementById('not-found').style.display = 'none';
+      } else if (currentPath === "/add-to-cart") {
+        document.getElementById('all').style.display = 'none';
+        document.getElementById('clothes').style.display = 'none';
+        document.getElementById('tech').style.display = 'none';
+        document.getElementById('add-to-cart').style.display = 'block';
         document.getElementById('not-found').style.display = 'none';
       } else {
         document.getElementById('all').style.display = 'none';
         document.getElementById('clothes').style.display = 'none';
         document.getElementById('tech').style.display = 'none';
+        document.getElementById('add-to-cart').style.display = 'none';
         document.getElementById('not-found').style.display = 'block';
       }
     }
@@ -136,7 +148,7 @@ class App extends React.Component {
               <span id="currency-symbol">$</span>&nbsp;
               <span id="caret-symbol">&#8964;</span>
             <CurrenciesDiv id="currencies-div">
-              {this.state.currencies.map(currency => <CurrencyDiv onClick={this.changeCurrency}>{currency.symbol}&nbsp;{currency.label}</CurrencyDiv>)}
+              {this.state.currencies.map(currency => <CurrencyDiv onClick={this.changeCurrency}key={currency.symbol}>{currency.symbol}&nbsp;{currency.label}</CurrencyDiv>)}
             </CurrenciesDiv>
             </CurrencyCartButton>
             <CurrencyCartButton>Cart</CurrencyCartButton>
@@ -146,6 +158,7 @@ class App extends React.Component {
           <div id="all" style={this.state.displayNone}><All/></div>
           <div id="clothes" style={this.state.displayNone}><Clothes/></div>
           <div id="tech" style={this.state.displayNone}><Tech/></div>
+          <div id="add-to-cart" style={this.state.displayNone}><AddToCart/></div>
           <div id="not-found" style={this.state.displayNone}><NotFound/></div>
         </div>
       </div>
