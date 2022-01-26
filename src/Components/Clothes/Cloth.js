@@ -53,7 +53,7 @@ class Cloth extends React.Component {
                             {!this.props.singleCloth.inStock && <SingleClothOutOfStock>OUT OF STOCK</SingleClothOutOfStock>}
                         </div>
                         <ClothName>{this.props.singleCloth.name}</ClothName>
-                        <ClothPrice>${this.props.singleCloth.prices[0].amount}</ClothPrice>
+                        <ClothPrice>{this.state.activeCurrencySymbol}{this.props.singleCloth.prices[this.state.currencyIndex].amount}</ClothPrice>
                     </SingleClothDiv>
                 </ClothCard>
             </div>
