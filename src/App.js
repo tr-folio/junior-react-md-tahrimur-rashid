@@ -100,7 +100,7 @@ class App extends React.Component {
   toggleCurrencyDiv() {
     if (this.state.isCurrencyDiv == false) {
       this.setState({isCurrencyDiv: true});
-      document.getElementById("currencies-div").style.display = "block";
+      document.getElementById("currencies-div").style.display = "inline-block";
       document.getElementById("caret-symbol").innerHTML = "&#8963";
     } else if (this.state.isCurrencyDiv == true) {
       this.setState({isCurrencyDiv: false});
@@ -129,16 +129,16 @@ class App extends React.Component {
             <HeaderButton onClick={this.displayTech}>Tech</HeaderButton>
           </NavMenusDiv>
           <ShoppingBagIconDiv>
-            <ShoppingBagIcon>Shopping Bag Icon</ShoppingBagIcon>
+            <ShoppingBagIcon>Icon</ShoppingBagIcon>
           </ShoppingBagIconDiv>
           <CurrencyCartDiv>
             <CurrencyCartButton onClick={this.toggleCurrencyDiv}>
               <span id="currency-symbol">$</span>&nbsp;
               <span id="caret-symbol">&#8964;</span>
-            </CurrencyCartButton>
             <CurrenciesDiv id="currencies-div">
               {this.state.currencies.map(currency => <CurrencyDiv onClick={this.changeCurrency}>{currency.symbol}&nbsp;{currency.label}</CurrencyDiv>)}
             </CurrenciesDiv>
+            </CurrencyCartButton>
             <CurrencyCartButton>Cart</CurrencyCartButton>
           </CurrencyCartDiv>
         </HeaderDiv> <br/> <br/>
