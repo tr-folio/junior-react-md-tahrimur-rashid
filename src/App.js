@@ -27,6 +27,7 @@ class App extends React.Component {
       isCurrencyDiv: false
     };
     this.toggleCurrencyDiv = this.toggleCurrencyDiv.bind(this); // bind this with the method toggleCurrencyDiv
+    this.changeCurrency = this.changeCurrency.bind(this);
   }
 
   componentDidMount() {
@@ -45,30 +46,15 @@ class App extends React.Component {
     .then((data) => {
         // console.log(data.data.currencies);
         this.setState({currencies: data.data.currencies});
-    })
-  }
+    });
 
-  displayAll() {
-    window.location.pathname = "/all";
-  }
-  displayClothes() {
-    window.location.pathname = "/clothes";
-  }
-  displayTech() {
-    window.location.pathname = "/tech";
-  }
-
-  toggleCurrencyDiv() {
-    if (this.state.isCurrencyDiv == false) {
-      this.setState({isCurrencyDiv: true});
-      document.getElementById("currencies-div").style.display = "block";
-    } else if (this.state.isCurrencyDiv == true) {
-      this.setState({isCurrencyDiv: false});
-      document.getElementById("currencies-div").style.display = "none";
+    if (localStorage.getItem("currency") === null) {
+      localStorage.setItem("currency", "$");
+    } else {
+      const currencySymbol = localStorage.getItem("currency");
+      document.getElementById("currency-symbol").innerHTML = `${currencySymbol}`;
     }
-  }
 
-  render() {
     window.onload = function() {
       const currentPath = window.location.pathname;
 
@@ -99,7 +85,41 @@ class App extends React.Component {
         document.getElementById('not-found').style.display = 'block';
       }
     }
+  }
 
+  displayAll() {
+    window.location.pathname = "/all";
+  }
+  displayClothes() {
+    window.location.pathname = "/clothes";
+  }
+  displayTech() {
+    window.location.pathname = "/tech";
+  }
+
+  toggleCurrencyDiv() {
+    if (this.state.isCurrencyDiv == false) {
+      this.setState({isCurrencyDiv: true});
+      document.getElementById("currencies-div").style.display = "block";
+      document.getElementById("caret-symbol").innerHTML = "&#8963";
+    } else if (this.state.isCurrencyDiv == true) {
+      this.setState({isCurrencyDiv: false});
+      document.getElementById("currencies-div").style.display = "none";
+      document.getElementById("caret-symbol").innerHTML = "&#8964";
+    }
+  }
+
+  changeCurrency(event) {
+    let currencyString = event.target.innerHTML;
+    const toBeRemoved = currencyString.substr(-9);
+    currencyString = currencyString.replace(toBeRemoved, "");
+    document.getElementById("currency-symbol").innerHTML = `${currencyString}`;
+    localStorage.setItem("currency", currencyString);
+    this.toggleCurrencyDiv();
+    window.location.reload();
+  }
+
+  render() {
     return (
       <div className="App">
         <HeaderDiv>
@@ -112,9 +132,12 @@ class App extends React.Component {
             <ShoppingBagIcon>Shopping Bag Icon</ShoppingBagIcon>
           </ShoppingBagIconDiv>
           <CurrencyCartDiv>
-            <CurrencyCartButton onClick={this.toggleCurrencyDiv}>Currency</CurrencyCartButton>
+            <CurrencyCartButton onClick={this.toggleCurrencyDiv}>
+              <span id="currency-symbol">$</span>&nbsp;
+              <span id="caret-symbol">&#8964;</span>
+            </CurrencyCartButton>
             <CurrenciesDiv id="currencies-div">
-              {this.state.currencies.map(currency => <CurrencyDiv>{currency.symbol}&nbsp;{currency.label}</CurrencyDiv>)}
+              {this.state.currencies.map(currency => <CurrencyDiv onClick={this.changeCurrency}>{currency.symbol}&nbsp;{currency.label}</CurrencyDiv>)}
             </CurrenciesDiv>
             <CurrencyCartButton>Cart</CurrencyCartButton>
           </CurrencyCartDiv>
