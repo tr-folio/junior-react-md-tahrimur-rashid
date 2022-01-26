@@ -132,3 +132,30 @@ export const SingleAttribute = styled.button`
     padding: 15px;
     margin-right: 5px;
 `;
+
+export const PriceH4 = styled.h4`
+    text-align: left;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+`;
+
+export const PriceAmountH4 = styled.h4`
+    text-align: left;
+    margin: 0;
+`;
+
+export const AddToCartButtonDiv = styled.div`
+    text-align: left;
+`;
+
+export const ButtonAddToCart = styled.button`
+    border: none;
+    background: limegreen;
+    color: white;
+    padding: 20px 50px;
+    font-size: 18px;
+`;
+
+export const DescriptionTextDiv = styled.div`
+    text-align: left;
+`;
