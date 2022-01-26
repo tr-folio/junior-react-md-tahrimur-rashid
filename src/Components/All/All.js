@@ -25,6 +25,7 @@ class All extends React.Component {
                         products {
                             id
                             name
+                            inStock
                             gallery
                             prices {
                                 currency {

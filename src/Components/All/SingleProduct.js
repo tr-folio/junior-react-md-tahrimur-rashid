@@ -2,7 +2,9 @@ import React from "react";
 import { 
     SingleProductCard, 
     SingleProductImg,
+    SingleProductDiv,
     SingleProductName,
+    SingleProductOutOfStock,
     SingleProductPrice
 } from "./StyledSingleProduct";
 
@@ -12,8 +14,10 @@ class SingleProduct extends React.Component {
         this.state = {
             currencyIndex: 0,
             activeCurrencySymbol: "$"
-        }
+        };
+        this.addProductToCart = this.addProductToCart.bind(this);
     }
+
     componentDidMount() {
         if (localStorage.getItem("currency") === null) {
             localStorage.setItem("currency", "$");
@@ -29,15 +33,23 @@ class SingleProduct extends React.Component {
             }
         }
     }
+
+    addProductToCart() {
+        window.alert(this.props.singleProduct.inStock);
+    }
+
     render() {
         return (
             <div>
-                <SingleProductCard>
-                    <div>
-                        <SingleProductImg src={this.props.singleProduct.gallery}/>
-                    </div>
-                    <SingleProductName>{this.props.singleProduct.name}</SingleProductName>
-                    <SingleProductPrice>{this.state.activeCurrencySymbol}{this.props.singleProduct.prices[this.state.currencyIndex].amount}</SingleProductPrice>
+                <SingleProductCard onClick={this.addProductToCart}>
+                    <SingleProductDiv>
+                        <div>
+                            <SingleProductImg src={this.props.singleProduct.gallery}/>
+                            {!this.props.singleProduct.inStock && <SingleProductOutOfStock>OUT OF STOCK</SingleProductOutOfStock>}
+                        </div>
+                        <SingleProductName>{this.props.singleProduct.name}</SingleProductName>
+                        <SingleProductPrice>{this.state.activeCurrencySymbol}{this.props.singleProduct.prices[this.state.currencyIndex].amount}</SingleProductPrice>
+                    </SingleProductDiv>
                 </SingleProductCard>
             </div>
         )
