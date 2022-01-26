@@ -25,7 +25,18 @@ class Clothes extends React.Component {
                         products {
                             id
                             name
+                            inStock
                             gallery
+                            attributes {
+                                id
+                                name
+                                type
+                                items {
+                                  displayValue
+                                  value
+                                  id
+                                }
+                              }
                             prices {
                                 currency {
                                     label

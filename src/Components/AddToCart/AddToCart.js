@@ -131,6 +131,10 @@ class AddToCart extends React.Component {
         }
     }
 
+    addToProduct() {
+        window.alert('add to cart');
+    }
+
     render() {
         return (
             <div>
@@ -165,7 +169,7 @@ class AddToCart extends React.Component {
                         <PriceAmountH4>{this.state.activeCurrencySymbol}{this.state.itemAmount}</PriceAmountH4>
                         <br/>
                         <AddToCartButtonDiv>
-                            <ButtonAddToCart>ADD TO CART</ButtonAddToCart>
+                            <ButtonAddToCart onClick={this.addToProduct}>ADD TO CART</ButtonAddToCart>
                         </AddToCartButtonDiv>
                         <br/>
                         <DescriptionTextDiv id="description-div"></DescriptionTextDiv>
