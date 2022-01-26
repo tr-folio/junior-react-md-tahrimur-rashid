@@ -45,3 +45,21 @@ export const CurrencyCartButton = styled.button`
         cursor: pointer;
     }
 `;
+
+export const CurrenciesDiv = styled.div`
+    position: absolute;
+    display: none;
+    top: 50px;
+    right: 50px;
+    padding: 5px 20px 5px 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background: white;
+`;
+
+export const CurrencyDiv = styled.div`
+    padding: 5px 0;
+    text-align: left;
+    &:hover {
+        cursor: pointer;
+    }
+`;
