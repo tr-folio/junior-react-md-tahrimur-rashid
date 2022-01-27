@@ -9,7 +9,7 @@ import {
     AlreadyInCart,
     AlreadyInCartImg
 } from "./StyledSingleProduct";
-import shoppingcartwhite from "../../Images/shoppingcartwhite.png"
+import shoppingcartwhite from "../../Images/shoppingcartwhite.png";
 
 class SingleProduct extends React.Component {
     constructor(props) {
@@ -48,7 +48,7 @@ class SingleProduct extends React.Component {
     }
 
     addProductToCart() {
-        if (this.props.singleProduct.inStock) {
+        if (this.props.singleProduct.inStock && !this.state.alreadyInCart) {
             localStorage.setItem("beforeCart", this.props.singleProduct.id);
             window.location.pathname = "/add-to-cart";
         }

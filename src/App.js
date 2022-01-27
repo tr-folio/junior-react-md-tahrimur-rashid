@@ -190,9 +190,9 @@ class App extends React.Component {
       <div className="App">
         <HeaderDiv>
           <NavMenusDiv>
-            <HeaderButton onClick={this.displayAll}>All</HeaderButton>
-            <HeaderButton onClick={this.displayClothes}>Clothes</HeaderButton>
-            <HeaderButton onClick={this.displayTech}>Tech</HeaderButton>
+            <HeaderButton onClick={this.displayAll}>ALL</HeaderButton>
+            <HeaderButton onClick={this.displayClothes}>CLOTHES</HeaderButton>
+            <HeaderButton onClick={this.displayTech}>TECH</HeaderButton>
           </NavMenusDiv>
           <ShoppingBagIconDiv>
             <ShoppingBagIcon>

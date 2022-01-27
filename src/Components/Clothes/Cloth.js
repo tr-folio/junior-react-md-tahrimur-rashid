@@ -1,5 +1,7 @@
 import React from "react";
 import { 
+    AlreadyInCart,
+    AlreadyInCartImg,
     ClothCard, 
     ClothImg, 
     ClothName,
@@ -7,13 +9,15 @@ import {
     SingleClothDiv,
     SingleClothOutOfStock
 } from "./StyledCloth";
+import shoppingcartwhite from "../../Images/shoppingcartwhite.png";
 
 class Cloth extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             currencyIndex: 0,
-            activeCurrencySymbol: "$"
+            activeCurrencySymbol: "$",
+            alreadyInCart: false
         };
         this.addProductToCart = this.addProductToCart.bind(this);
     }
@@ -28,6 +32,15 @@ class Cloth extends React.Component {
                 if (currencySymbol === prices[i].currency.symbol) {
                     this.setState({currencyIndex: i});
                     this.setState({activeCurrencySymbol: currencySymbol});
+                    break;
+                }
+            }
+        }
+        if (localStorage.getItem("shoppingCart") !== null) {
+            const temporary_cart = JSON.parse(localStorage.getItem("shoppingCart"));
+            for (let i=0; i<temporary_cart.length; i++) {
+                if (temporary_cart[i].id === this.props.singleCloth.id) {
+                    this.setState({alreadyInCart: true});
                     break;
                 }
             }
@@ -51,6 +64,7 @@ class Cloth extends React.Component {
                         <div>
                             <ClothImg src={this.props.singleCloth.gallery}/>
                             {!this.props.singleCloth.inStock && <SingleClothOutOfStock>OUT OF STOCK</SingleClothOutOfStock>}
+                            {this.state.alreadyInCart && <AlreadyInCart><AlreadyInCartImg src={shoppingcartwhite}/></AlreadyInCart>}
                         </div>
                         <ClothName>{this.props.singleCloth.name}</ClothName>
                         <ClothPrice>{this.state.activeCurrencySymbol}{this.props.singleCloth.prices[this.state.currencyIndex].amount}</ClothPrice>
