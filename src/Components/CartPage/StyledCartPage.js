@@ -16,3 +16,7 @@ export const CartDiv = styled.div`
         width: 300px;
     }
 `;
+
+export const CartH1 = styled.h1`
+    text-align: left;
+`;

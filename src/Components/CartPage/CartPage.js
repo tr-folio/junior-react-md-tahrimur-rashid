@@ -1,6 +1,7 @@
 import React from "react";
 import SingleCartItems from "./SingleCartItems";
-import { CartDiv } from "./StyledCartPage";
+import { CartDiv, CartH1 } from "./StyledCartPage";
+import { SingleCartItemDiv } from "./StyledSingleCartItem";
 
 class CartPage extends React.Component {
     constructor(props) {
@@ -21,8 +22,8 @@ class CartPage extends React.Component {
     render() {
         return (
             <div>
-                <h1>Cart</h1>
                 <CartDiv>
+                    <CartH1>Cart</CartH1>
                     {this.state.cart.map(singleCartItem => <SingleCartItems key={singleCartItem.id} singleCartItem={singleCartItem}></SingleCartItems>)}
                 </CartDiv>
             </div>

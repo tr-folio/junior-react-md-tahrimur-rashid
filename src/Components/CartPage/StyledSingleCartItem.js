@@ -40,7 +40,14 @@ export const CountDiv = styled.div`
         width: 50px;
     }
 `;
-export const PlusMinusButton = styled.button`
+export const PlusButton = styled.button`
+    font-size: 24px;
+    width: 30px;
+    height: 30px;
+    background: white;
+    border: 2px solid gray;
+`;
+export const MinusButton = styled.button`
     font-size: 24px;
     width: 30px;
     height: 30px;

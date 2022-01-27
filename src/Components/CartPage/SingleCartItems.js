@@ -1,5 +1,5 @@
 import React from "react";
-import { CartAttrubutesButton, CountDiv, ImgDiv, InfoDiv, PlusMinusButton, ProductImg, SingleCartItemDiv } from "./StyledSingleCartItem";
+import { CartAttrubutesButton, CountDiv, ImgDiv, InfoDiv, MinusButton, PlusButton, ProductImg, SingleCartItemDiv } from "./StyledSingleCartItem";
 
 class SingleCartItems extends React.Component {
     constructor(props) {
@@ -85,6 +85,48 @@ class SingleCartItems extends React.Component {
                 }
             }
         })
+        .then(() => {
+            if (!this.state.isColorAttribute) {
+                const selectedAttributeId = this.props.singleCartItem.attribute+"";
+                // console.log(selectedAttributeId);
+                document.getElementById(selectedAttributeId).style.background = 'black';
+                document.getElementById(selectedAttributeId).style.color = 'white';
+            } else if (this.state.isColorAttribute) {
+                const selectedAttributeId = this.props.singleCartItem.attribute+"";
+                // console.log(selectedAttributeId);
+                document.getElementById(selectedAttributeId).style.border = '2px solid blue';
+            }
+        })
+    }
+
+    increaseQuantity(id) {
+        const temporary_cart = JSON.parse(localStorage.getItem("shoppingCart"));
+        for (let i=0; i<temporary_cart.length; i++) {
+            if (temporary_cart[i].id === id) {
+                temporary_cart[i].quantity += 1;
+                localStorage.removeItem("shoppingCart");
+                localStorage.setItem("shoppingCart", JSON.stringify(temporary_cart));
+                break;
+            }
+        }
+        window.location.reload();
+    }
+
+    decreaseQuantity(id) {
+        const temporary_cart = JSON.parse(localStorage.getItem("shoppingCart"));
+        for (let i=0; i<temporary_cart.length; i++) {
+            if (temporary_cart[i].id === id) {
+                if (temporary_cart[i].quantity === 1) {
+                    break;
+                } else {
+                    temporary_cart[i].quantity -= 1;
+                    localStorage.removeItem("shoppingCart");
+                    localStorage.setItem("shoppingCart", JSON.stringify(temporary_cart));
+                    break;
+                }
+            }
+        }
+        window.location.reload();
     }
 
     render() {
@@ -95,14 +137,14 @@ class SingleCartItems extends React.Component {
                         <h3>{this.props.singleCartItem.name}</h3>
                         <h4>{this.state.activeCurrencySymbol}{this.state.amount}</h4>
                         <div>
-                            {this.state.isColorAttribute && <span>{this.state.items.map(item => <CartAttrubutesButton key={item.id} id={item.id} style={{background: `${item.value}`}}></CartAttrubutesButton>)}</span>}
-                            {!this.state.isColorAttribute && <span>{this.state.items.map(item => <CartAttrubutesButton key={item.id} id={item.id}>{item.displayValue}</CartAttrubutesButton>)}</span>}
+                            {this.state.isColorAttribute && <span>{this.state.items.map(item => <CartAttrubutesButton key={item.id} id={item.displayValue} style={{background: `${item.value}`}}></CartAttrubutesButton>)}</span>}
+                            {!this.state.isColorAttribute && <span>{this.state.items.map(item => <CartAttrubutesButton key={item.id} id={item.displayValue}>{item.displayValue}</CartAttrubutesButton>)}</span>}
                         </div>
                     </InfoDiv>
                     <CountDiv>
                         <br/>
                         <div>
-                            <PlusMinusButton>+</PlusMinusButton>
+                            <PlusButton onClick={() => this.increaseQuantity(this.props.singleCartItem.id)}>+</PlusButton>
                         </div>
                         <br/>
                         <div>
@@ -110,7 +152,7 @@ class SingleCartItems extends React.Component {
                         </div>
                         <br/>
                         <div>
-                            <PlusMinusButton>-</PlusMinusButton>
+                            <MinusButton onClick={() => this.decreaseQuantity(this.props.singleCartItem.id)}>-</MinusButton>
                         </div>
                     </CountDiv>
                     <ImgDiv>
