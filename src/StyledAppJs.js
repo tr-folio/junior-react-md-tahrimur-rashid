@@ -68,6 +68,11 @@ export const ShoppingBagIcon = styled.div`
     padding: 17px 5px;
 `;
 
+export const ShoppingBagIconImg = styled.img`
+    width: 20px;
+    height: 20px;
+`;
+
 export const CurrencyCartDiv = styled.div`
     float: left;
     width: 440px;
@@ -124,4 +129,9 @@ export const CurrencyDiv = styled.div`
     &:hover {
         cursor: pointer;
     }
+`;
+
+export const CartButtonImg = styled.img`
+    width: 15px;
+    height: 10px;
 `;

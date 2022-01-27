@@ -14,8 +14,12 @@ import {
   CurrencyCartButton,
   ShoppingBagIcon,
   CurrenciesDiv,
-  CurrencyDiv
+  CurrencyDiv,
+  CartButtonImg,
+  ShoppingBagIconImg
 } from "./StyledAppJs";
+import shoppingcartimg from "./Images/shoppingcart.png";
+import shoppingbagimg from "./Images/shoppingbag.png";
 
 class App extends React.Component {
   constructor(props) {
@@ -142,7 +146,9 @@ class App extends React.Component {
             <HeaderButton onClick={this.displayTech}>Tech</HeaderButton>
           </NavMenusDiv>
           <ShoppingBagIconDiv>
-            <ShoppingBagIcon>Icon</ShoppingBagIcon>
+            <ShoppingBagIcon>
+              <ShoppingBagIconImg src={shoppingbagimg}/>
+            </ShoppingBagIcon>
           </ShoppingBagIconDiv>
           <CurrencyCartDiv>
             <CurrencyCartButton onClick={this.toggleCurrencyDiv}>
@@ -152,7 +158,9 @@ class App extends React.Component {
               {this.state.currencies.map(currency => <CurrencyDiv onClick={this.changeCurrency}key={currency.symbol}>{currency.symbol}&nbsp;{currency.label}</CurrencyDiv>)}
             </CurrenciesDiv>
             </CurrencyCartButton>
-            <CurrencyCartButton>Cart</CurrencyCartButton>
+            <CurrencyCartButton>
+              <CartButtonImg src={shoppingcartimg}/>
+            </CurrencyCartButton>
           </CurrencyCartDiv>
         </HeaderDiv> <br/> <br/>
         <div id="page-container">
