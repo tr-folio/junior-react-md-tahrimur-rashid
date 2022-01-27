@@ -48,7 +48,7 @@ class Cloth extends React.Component {
     }
 
     addProductToCart() {
-        if (this.props.singleCloth.inStock) {
+        if (this.props.singleCloth.inStock && !this.state.alreadyInCart) {
             localStorage.setItem("beforeCart", this.props.singleCloth.id);
             window.location.pathname = "/add-to-cart";
         }

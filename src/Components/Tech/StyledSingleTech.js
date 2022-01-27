@@ -32,6 +32,23 @@ export const SingleTechOutOfStock = styled.div`
     font-size: 24px;
 `;
 
+export const AlreadyInCart = styled.div`
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border-radius: 30px;
+    padding: 10px;
+    background: limegreen;
+    top: 230px;
+    right: 20px;
+`;
+
+export const AlreadyInCartImg = styled.img`
+    width: 30px;
+    height: 30px;
+    border-radius: 30px;
+`;
+
 export const TechProductName = styled.p`
     margin-bottom: 5px;
     color: gray;
