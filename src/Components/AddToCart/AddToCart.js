@@ -13,6 +13,7 @@ import {
     PriceAmountH4, 
     PriceH4, 
     ProductDescriptionDiv, 
+    SelectAttributeMsg, 
     SingleAttribute, 
     SmallDiv, 
     SmallImg, 
@@ -33,6 +34,7 @@ class AddToCart extends React.Component {
         };
         this.selectNonColorAttribute = this.selectNonColorAttribute.bind(this);
         this.selectColorAttribute = this.selectColorAttribute.bind(this);
+        this.addProductToCart = this.addProductToCart.bind(this);
     }
 
     componentDidMount() {
@@ -131,8 +133,74 @@ class AddToCart extends React.Component {
         }
     }
 
-    addToProduct() {
-        window.alert('add to cart');
+    addProductToCart() {
+        if (!this.state.attributes) {
+            const newProduct = {
+                id: this.state.productToAdd.id,
+                name: this.state.productToAdd.name,
+                quantity: 1,
+                attributeName: '',
+                attribute: ''
+            }
+            if (localStorage.getItem("shoppingCart") === null) {
+                const newCart = [];
+                newCart.push(newProduct);
+                localStorage.setItem("shoppingCart", JSON.stringify(newCart));
+            } else {
+                const cart = JSON.parse(localStorage.getItem("shoppingCart"));
+                let isExist = false;
+                for (let i=0; i<cart.length; i++) {
+                    if (cart[i].id === newProduct.id) {
+                        isExist = true;
+                        break;
+                    }
+                }
+                if (isExist) {
+                    window.alert('product already exists');
+                } else {
+                    cart.push(newProduct);
+                    localStorage.removeItem("shoppingCart");
+                    localStorage.setItem("shoppingCart", JSON.stringify(cart));
+                }
+            }
+        } else if (localStorage.getItem("selectedAttribute") === "empty") {
+            // Component App.js, Method: componentDidMound(), Expression: window.onload = function() {}
+            // localStorage.setItem("selectedAttribute", "empty"); 
+            document.getElementById("msg-div").style.display = "block";
+        } else {
+            const newProduct = {
+                id: this.state.productToAdd.id,
+                name: this.state.productToAdd.name,
+                quantity: 1,
+                attributeName: this.state.attributes.name,
+                attribute: localStorage.getItem("selectedAttribute")
+            }
+            if (localStorage.getItem("shoppingCart") === null) {
+                const newCart = [];
+                newCart.push(newProduct);
+                localStorage.setItem("shoppingCart", JSON.stringify(newCart));
+            } else {
+                const cart = JSON.parse(localStorage.getItem("shoppingCart"));
+                let isExist = false;
+                for (let i=0; i<cart.length; i++) {
+                    if (cart[i].id === newProduct.id) {
+                        isExist = true;
+                        break;
+                    }
+                }
+                if (isExist) {
+                    window.alert('product already exists');
+                } else {
+                    cart.push(newProduct);
+                    localStorage.removeItem("shoppingCart");
+                    localStorage.setItem("shoppingCart", JSON.stringify(cart));
+                }
+            }
+        }
+    }
+
+    hideMsgDiv() {
+        document.getElementById("msg-div").style.display = "none";
     }
 
     render() {
@@ -169,11 +237,16 @@ class AddToCart extends React.Component {
                         <PriceAmountH4>{this.state.activeCurrencySymbol}{this.state.itemAmount}</PriceAmountH4>
                         <br/>
                         <AddToCartButtonDiv>
-                            <ButtonAddToCart onClick={this.addToProduct}>ADD TO CART</ButtonAddToCart>
+                            <ButtonAddToCart onClick={this.addProductToCart}>ADD TO CART</ButtonAddToCart>
                         </AddToCartButtonDiv>
                         <br/>
                         <DescriptionTextDiv id="description-div"></DescriptionTextDiv>
                     </DescriptionDiv>
+                    <SelectAttributeMsg id="msg-div">
+                        <p>Please select {this.state.attributes?.name}</p>
+                        <hr/>
+                        <button onClick={this.hideMsgDiv}>Ok</button>
+                    </SelectAttributeMsg>
                 </ProductDescriptionDiv>}
             </div>
         );

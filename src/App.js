@@ -57,6 +57,7 @@ class App extends React.Component {
     }
 
     window.onload = function() {
+      localStorage.setItem("selectedAttribute", "empty");
       const currentPath = window.location.pathname;
 
       if (currentPath === "/") {
