@@ -20,6 +20,7 @@ import {
 } from "./StyledAppJs";
 import shoppingcartimg from "./Images/shoppingcart.png";
 import shoppingbagimg from "./Images/shoppingbag.png";
+import CartPage from './Components/CartPage/CartPage';
 
 class App extends React.Component {
   constructor(props) {
@@ -69,36 +70,49 @@ class App extends React.Component {
         document.getElementById('clothes').style.display = 'none';
         document.getElementById('tech').style.display = 'none';
         document.getElementById('add-to-cart').style.display = 'none';
+        document.getElementById('cart-page').style.display = 'none';
         document.getElementById('not-found').style.display = 'none';
       } else if (currentPath === "/all") {
         document.getElementById('all').style.display = 'block';
         document.getElementById('clothes').style.display = 'none';
         document.getElementById('tech').style.display = 'none';
         document.getElementById('add-to-cart').style.display = 'none';
+        document.getElementById('cart-page').style.display = 'none';
         document.getElementById('not-found').style.display = 'none';
       } else if (currentPath === "/clothes") {
         document.getElementById('all').style.display = 'none';
         document.getElementById('clothes').style.display = 'block';
         document.getElementById('tech').style.display = 'none';
         document.getElementById('add-to-cart').style.display = 'none';
+        document.getElementById('cart-page').style.display = 'none';
         document.getElementById('not-found').style.display = 'none';
       } else if (currentPath === "/tech") {
         document.getElementById('all').style.display = 'none';
         document.getElementById('clothes').style.display = 'none';
         document.getElementById('tech').style.display = 'block';
         document.getElementById('add-to-cart').style.display = 'none';
+        document.getElementById('cart-page').style.display = 'none';
         document.getElementById('not-found').style.display = 'none';
       } else if (currentPath === "/add-to-cart") {
         document.getElementById('all').style.display = 'none';
         document.getElementById('clothes').style.display = 'none';
         document.getElementById('tech').style.display = 'none';
         document.getElementById('add-to-cart').style.display = 'block';
+        document.getElementById('cart-page').style.display = 'none';
+        document.getElementById('not-found').style.display = 'none';
+      } else if (currentPath === "/cart-page") {
+        document.getElementById('all').style.display = 'none';
+        document.getElementById('clothes').style.display = 'none';
+        document.getElementById('tech').style.display = 'none';
+        document.getElementById('add-to-cart').style.display = 'none';
+        document.getElementById('cart-page').style.display = 'block';
         document.getElementById('not-found').style.display = 'none';
       } else {
         document.getElementById('all').style.display = 'none';
         document.getElementById('clothes').style.display = 'none';
         document.getElementById('tech').style.display = 'none';
         document.getElementById('add-to-cart').style.display = 'none';
+        document.getElementById('cart-page').style.display = 'none';
         document.getElementById('not-found').style.display = 'block';
       }
     }
@@ -159,7 +173,7 @@ class App extends React.Component {
             </CurrenciesDiv>
             </CurrencyCartButton>
             <CurrencyCartButton>
-              <CartButtonImg src={shoppingcartimg}/>
+              {/* <CartButtonImg src={shoppingcartimg}/> */}Cart
             </CurrencyCartButton>
           </CurrencyCartDiv>
         </HeaderDiv> <br/> <br/>
@@ -168,6 +182,7 @@ class App extends React.Component {
           <div id="clothes" style={this.state.displayNone}><Clothes/></div>
           <div id="tech" style={this.state.displayNone}><Tech/></div>
           <div id="add-to-cart" style={this.state.displayNone}><AddToCart/></div>
+          <div id="cart-page" style={this.state.displayNone}><CartPage/></div>
           <div id="not-found" style={this.state.displayNone}><NotFound/></div>
         </div>
       </div>

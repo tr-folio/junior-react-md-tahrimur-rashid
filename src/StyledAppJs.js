@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const HeaderDiv = styled.div`
     width: 1280px;
     margin: 0 auto;
+    height: 50px;
     @media only screen and (max-width: 1280px) {
         width: 900px;
     }

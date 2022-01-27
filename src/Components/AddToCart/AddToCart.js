@@ -146,6 +146,7 @@ class AddToCart extends React.Component {
                 const newCart = [];
                 newCart.push(newProduct);
                 localStorage.setItem("shoppingCart", JSON.stringify(newCart));
+                window.location.pathname = "/cart-page";
             } else {
                 const cart = JSON.parse(localStorage.getItem("shoppingCart"));
                 let isExist = false;
@@ -156,11 +157,12 @@ class AddToCart extends React.Component {
                     }
                 }
                 if (isExist) {
-                    window.alert('product already exists');
+                    window.location.pathname = "/cart-page";
                 } else {
                     cart.push(newProduct);
                     localStorage.removeItem("shoppingCart");
                     localStorage.setItem("shoppingCart", JSON.stringify(cart));
+                    window.location.pathname = "/cart-page";
                 }
             }
         } else if (localStorage.getItem("selectedAttribute") === "empty") {
@@ -179,6 +181,7 @@ class AddToCart extends React.Component {
                 const newCart = [];
                 newCart.push(newProduct);
                 localStorage.setItem("shoppingCart", JSON.stringify(newCart));
+                window.location.pathname = "/cart-page";
             } else {
                 const cart = JSON.parse(localStorage.getItem("shoppingCart"));
                 let isExist = false;
@@ -189,11 +192,12 @@ class AddToCart extends React.Component {
                     }
                 }
                 if (isExist) {
-                    window.alert('product already exists');
+                    window.location.pathname = "/cart-page";
                 } else {
                     cart.push(newProduct);
                     localStorage.removeItem("shoppingCart");
                     localStorage.setItem("shoppingCart", JSON.stringify(cart));
+                    window.location.pathname = "/cart-page";
                 }
             }
         }
