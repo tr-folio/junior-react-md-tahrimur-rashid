@@ -12,7 +12,9 @@ class SingleMiniCart extends React.Component {
             prices: [],
             amount: 0,
             isColorAttribute: false,
-            attributes: {}
+            attributes: {},
+            totalPrice: 0,
+            isLastItem: false
         };
     }
 
@@ -82,14 +84,17 @@ class SingleMiniCart extends React.Component {
                         if (localStorage.getItem("totalPrice") === "empty") {
                             let totalPrice = this.state.amount+"";
                             localStorage.setItem("totalPrice", JSON.stringify(totalPrice));
+                            this.setState({totalPrice: totalPrice});
                         } else {
                             let totalPrice = JSON.parse(localStorage.getItem("totalPrice"));
                             totalPrice = parseFloat(totalPrice);
                             let newPrice = this.state.amount;
                             newPrice = parseFloat(newPrice);
                             totalPrice = totalPrice + newPrice;
+                            totalPrice = totalPrice.toFixed(2);
                             totalPrice = totalPrice+"";
                             localStorage.setItem("totalPrice", JSON.stringify(totalPrice));
+                            this.setState({totalPrice: totalPrice});
                         }
                         this.setState({activeCurrencySymbol: currencySymbol});
                         // console.log(this.state.activeCurrencySymbol);
@@ -110,6 +115,15 @@ class SingleMiniCart extends React.Component {
                 document.getElementById(selectedAttributeId).style.border = '2px solid blue';
             }
         })
+        const temporary_cart = JSON.parse(localStorage.getItem("shoppingCart"));
+        // console.log(temporary_cart);
+        const cartLength = temporary_cart.length;
+        const lastItemId = temporary_cart[cartLength-1].id;
+        if (this.props.singleCartItem.id === lastItemId) {
+            this.state.isLastItem = true;
+            // console.log(lastItemId);
+            // console.log(this.state.isLastItem)
+        }
     }
 
     increaseQuantity(id) {
@@ -172,6 +186,8 @@ class SingleMiniCart extends React.Component {
                         <ProductImg src={this.state.product.gallery}/>
                     </ImgDiv>
                 </SingleCartItemDiv>
+                {this.state.isLastItem && <h4>Total&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{this.state.activeCurrencySymbol}{this.state.totalPrice}</h4>}
+                
             </div>
         );
     }

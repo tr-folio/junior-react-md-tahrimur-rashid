@@ -30,7 +30,6 @@ import shoppingcartimg from "./Images/shoppingcart.png";
 import shoppingbagimg from "./Images/shoppingbag.png";
 import CartPage from './Components/CartPage/CartPage';
 import SingleMiniCart from './SingleMiniCart';
-import ShowTotal from './ShowTotal';
 
 class App extends React.Component {
   constructor(props) {
@@ -228,9 +227,6 @@ class App extends React.Component {
               <MiniCartP><b>My Bag</b>&nbsp;&nbsp;<span>{this.state.numberOfCartItems}&nbsp;items</span></MiniCartP>
               <div>
                 {this.state.cart.map(singleCartItem => <SingleMiniCart key={singleCartItem.id} singleCartItem={singleCartItem}></SingleMiniCart>)}
-              </div>
-              <div>
-                  <ShowTotal></ShowTotal>
               </div>
               <div>
                 <ViewBagButton onClick={this.viewCartPage}>VIEW BAG</ViewBagButton> <CheckOutButton>CHECK OUT</CheckOutButton>
