@@ -136,3 +136,51 @@ export const CartButtonImg = styled.img`
     width: 15px;
     height: 10px;
 `;
+
+export const TransparentLayerDiv = styled.div`
+    display: none;
+    position: absolute;
+    top: 50px;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(128, 128, 128, 0.5);
+    @media only screen and (max-width: 992px) {
+        top: 100px;
+    }
+`;
+
+export const MiniCartContainer = styled.div`
+    width: 1280px;
+    height: 100%;
+    margin: 0 auto;
+    @media only screen and (max-width: 1280px) {
+        width: 900px;
+    }
+    @media only screen and (max-width: 992px) {
+        width: 700px;
+    }
+    @media only screen and (max-width: 768px) {
+        width: 500px;
+    }
+    @media only screen and (max-width: 575px) {
+        width: 300px;
+    }
+`;
+
+export const MiniFlexDiv = styled.div`
+    display: flex;
+    justify-content: flex-end;
+    @media only screen and (max-width: 992px) {
+        justify-content: flex-start;
+    }
+`;
+
+export const MiniCartDiv = styled.div`
+    width: 280px;
+    background: white;
+    padding: 10px;
+`;
+
+export const MiniCartP = styled.p`
+    text-align: left;
+`;

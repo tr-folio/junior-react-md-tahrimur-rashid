@@ -16,7 +16,12 @@ import {
   CurrenciesDiv,
   CurrencyDiv,
   CartButtonImg,
-  ShoppingBagIconImg
+  ShoppingBagIconImg,
+  TransparentLayerDiv,
+  MiniCartContainer,
+  MiniCartDiv,
+  MiniFlexDiv,
+  MiniCartP
 } from "./StyledAppJs";
 import shoppingcartimg from "./Images/shoppingcart.png";
 import shoppingbagimg from "./Images/shoppingbag.png";
@@ -30,9 +35,11 @@ class App extends React.Component {
         display: 'none'
       },
       currencies: [],
-      isCurrencyDiv: false
+      isCurrencyDiv: false,
+      isMiniCart: false
     };
     this.toggleCurrencyDiv = this.toggleCurrencyDiv.bind(this); // bind this with the method toggleCurrencyDiv
+    this.toggleMiniCart = this.toggleMiniCart.bind(this);
     this.changeCurrency = this.changeCurrency.bind(this);
   }
 
@@ -150,6 +157,16 @@ class App extends React.Component {
     window.location.reload();
   }
 
+  toggleMiniCart() {
+    if (this.state.isMiniCart === false) {
+      this.state.isMiniCart = true;
+      document.getElementById("show-mini-cart").style.display = 'block';
+    } else {
+      this.state.isMiniCart = false;
+      document.getElementById("show-mini-cart").style.display = 'none';
+    }
+  }
+
   render() {
     return (
       <div className="App">
@@ -172,8 +189,8 @@ class App extends React.Component {
               {this.state.currencies.map(currency => <CurrencyDiv onClick={this.changeCurrency}key={currency.symbol}>{currency.symbol}&nbsp;{currency.label}</CurrencyDiv>)}
             </CurrenciesDiv>
             </CurrencyCartButton>
-            <CurrencyCartButton>
-              {/* <CartButtonImg src={shoppingcartimg}/> */}Cart
+            <CurrencyCartButton onClick={this.toggleMiniCart}>
+              <CartButtonImg src={shoppingcartimg}/>
             </CurrencyCartButton>
           </CurrencyCartDiv>
         </HeaderDiv> <br/> <br/>
@@ -185,6 +202,15 @@ class App extends React.Component {
           <div id="cart-page" style={this.state.displayNone}><CartPage/></div>
           <div id="not-found" style={this.state.displayNone}><NotFound/></div>
         </div>
+        <TransparentLayerDiv id="show-mini-cart">
+          <MiniCartContainer>
+            <MiniFlexDiv>
+            <MiniCartDiv>
+              <MiniCartP><b>My Bag</b></MiniCartP>
+            </MiniCartDiv>
+            </MiniFlexDiv>
+          </MiniCartContainer>
+        </TransparentLayerDiv>
       </div>
     );
   }
