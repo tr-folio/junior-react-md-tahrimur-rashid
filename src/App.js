@@ -21,11 +21,15 @@ import {
   MiniCartContainer,
   MiniCartDiv,
   MiniFlexDiv,
-  MiniCartP
+  MiniCartP,
+  ViewBagButton,
+  CheckOutButton
 } from "./StyledAppJs";
 import shoppingcartimg from "./Images/shoppingcart.png";
 import shoppingbagimg from "./Images/shoppingbag.png";
 import CartPage from './Components/CartPage/CartPage';
+import SingleMiniCart from './SingleMiniCart';
+import ShowTotal from './ShowTotal';
 
 class App extends React.Component {
   constructor(props) {
@@ -36,7 +40,9 @@ class App extends React.Component {
       },
       currencies: [],
       isCurrencyDiv: false,
-      isMiniCart: false
+      isMiniCart: false,
+      cart: [],
+      numberOfCartItems: 0
     };
     this.toggleCurrencyDiv = this.toggleCurrencyDiv.bind(this); // bind this with the method toggleCurrencyDiv
     this.toggleMiniCart = this.toggleMiniCart.bind(this);
@@ -61,6 +67,12 @@ class App extends React.Component {
         this.setState({currencies: data.data.currencies});
     });
 
+    if (localStorage.getItem("shoppingCart") !== null) {
+      const existingCart = JSON.parse(localStorage.getItem("shoppingCart"));
+      this.state.numberOfCartItems = existingCart.length;
+      this.state.cart = [...existingCart];
+    }
+
     if (localStorage.getItem("currency") === null) {
       localStorage.setItem("currency", "$");
     } else {
@@ -69,6 +81,7 @@ class App extends React.Component {
     }
 
     window.onload = function() {
+      localStorage.setItem("totalPrice", "empty");
       localStorage.setItem("selectedAttribute", "empty");
       const currentPath = window.location.pathname;
 
@@ -206,7 +219,16 @@ class App extends React.Component {
           <MiniCartContainer>
             <MiniFlexDiv>
             <MiniCartDiv>
-              <MiniCartP><b>My Bag</b></MiniCartP>
+              <MiniCartP><b>My Bag</b>&nbsp;&nbsp;<span>{this.state.numberOfCartItems}&nbsp;items</span></MiniCartP>
+              <div>
+                {this.state.cart.map(singleCartItem => <SingleMiniCart key={singleCartItem.id} singleCartItem={singleCartItem}></SingleMiniCart>)}
+              </div>
+              <div>
+                  <ShowTotal></ShowTotal>
+              </div>
+              <div>
+                <ViewBagButton>VIEW BAG</ViewBagButton> <CheckOutButton>CHECK OUT</CheckOutButton>
+              </div>
             </MiniCartDiv>
             </MiniFlexDiv>
           </MiniCartContainer>

@@ -179,8 +179,24 @@ export const MiniCartDiv = styled.div`
     width: 280px;
     background: white;
     padding: 10px;
+    height: 400px;
+    overflow-y: scroll;
 `;
 
 export const MiniCartP = styled.p`
     text-align: left;
+`;
+
+export const ViewBagButton = styled.button`
+    border: 2px solid black;
+    padding: 10px 0;
+    background: white;
+    width: 120px;
+`;
+export const CheckOutButton = styled.button`
+    border: 2px solid limegreen;
+    padding: 10px 0;
+    background: limegreen;
+    color: white;
+    width: 120px;
 `;
