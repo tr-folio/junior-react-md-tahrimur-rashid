@@ -5,15 +5,19 @@ import {
     SingleProductDiv,
     SingleProductName,
     SingleProductOutOfStock,
-    SingleProductPrice
+    SingleProductPrice,
+    AlreadyInCart,
+    AlreadyInCartImg
 } from "./StyledSingleProduct";
+import shoppingcartwhite from "../../Images/shoppingcartwhite.png"
 
 class SingleProduct extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             currencyIndex: 0,
-            activeCurrencySymbol: "$"
+            activeCurrencySymbol: "$",
+            alreadyInCart: false
         };
         this.addProductToCart = this.addProductToCart.bind(this);
     }
@@ -28,6 +32,15 @@ class SingleProduct extends React.Component {
                 if (currencySymbol === prices[i].currency.symbol) {
                     this.setState({currencyIndex: i});
                     this.setState({activeCurrencySymbol: currencySymbol});
+                    break;
+                }
+            }
+        }
+        if (localStorage.getItem("shoppingCart") !== null) {
+            const temporary_cart = JSON.parse(localStorage.getItem("shoppingCart"));
+            for (let i=0; i<temporary_cart.length; i++) {
+                if (temporary_cart[i].id === this.props.singleProduct.id) {
+                    this.setState({alreadyInCart: true});
                     break;
                 }
             }
@@ -51,6 +64,7 @@ class SingleProduct extends React.Component {
                         <div>
                             <SingleProductImg src={this.props.singleProduct.gallery}/>
                             {!this.props.singleProduct.inStock && <SingleProductOutOfStock>OUT OF STOCK</SingleProductOutOfStock>}
+                            {this.state.alreadyInCart && <AlreadyInCart><AlreadyInCartImg src={shoppingcartwhite}/></AlreadyInCart>}
                         </div>
                         <SingleProductName>{this.props.singleProduct.name}</SingleProductName>
                         <SingleProductPrice>{this.state.activeCurrencySymbol}{this.props.singleProduct.prices[this.state.currencyIndex].amount}</SingleProductPrice>

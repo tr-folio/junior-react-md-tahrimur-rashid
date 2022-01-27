@@ -23,7 +23,8 @@ import {
   MiniFlexDiv,
   MiniCartP,
   ViewBagButton,
-  CheckOutButton
+  CheckOutButton,
+  NumberOfCartItemsDiv
 } from "./StyledAppJs";
 import shoppingcartimg from "./Images/shoppingcart.png";
 import shoppingbagimg from "./Images/shoppingbag.png";
@@ -180,6 +181,10 @@ class App extends React.Component {
     }
   }
 
+  viewCartPage() {
+    window.location.pathname = "/cart-page";
+  }
+
   render() {
     return (
       <div className="App">
@@ -198,12 +203,13 @@ class App extends React.Component {
             <CurrencyCartButton onClick={this.toggleCurrencyDiv}>
               <span id="currency-symbol">$</span>&nbsp;
               <span id="caret-symbol">&#8964;</span>
-            <CurrenciesDiv id="currencies-div">
-              {this.state.currencies.map(currency => <CurrencyDiv onClick={this.changeCurrency}key={currency.symbol}>{currency.symbol}&nbsp;{currency.label}</CurrencyDiv>)}
-            </CurrenciesDiv>
+              <CurrenciesDiv id="currencies-div">
+                {this.state.currencies.map(currency => <CurrencyDiv onClick={this.changeCurrency}key={currency.symbol}>{currency.symbol}&nbsp;{currency.label}</CurrencyDiv>)}
+              </CurrenciesDiv>
             </CurrencyCartButton>
             <CurrencyCartButton onClick={this.toggleMiniCart}>
               <CartButtonImg src={shoppingcartimg}/>
+              <NumberOfCartItemsDiv>{this.state.numberOfCartItems}</NumberOfCartItemsDiv>
             </CurrencyCartButton>
           </CurrencyCartDiv>
         </HeaderDiv> <br/> <br/>
@@ -227,7 +233,7 @@ class App extends React.Component {
                   <ShowTotal></ShowTotal>
               </div>
               <div>
-                <ViewBagButton>VIEW BAG</ViewBagButton> <CheckOutButton>CHECK OUT</CheckOutButton>
+                <ViewBagButton onClick={this.viewCartPage}>VIEW BAG</ViewBagButton> <CheckOutButton>CHECK OUT</CheckOutButton>
               </div>
             </MiniCartDiv>
             </MiniFlexDiv>

@@ -137,6 +137,17 @@ export const CartButtonImg = styled.img`
     height: 10px;
 `;
 
+export const NumberOfCartItemsDiv = styled.div`
+    position: absolute;
+    padding: 2px 5px;
+    border-radius: 30px;
+    background: black;
+    color: white;
+    font-size: 10px;
+    top: 10px;
+    right: -5px;
+`;
+
 export const TransparentLayerDiv = styled.div`
     display: none;
     position: absolute;
@@ -192,6 +203,9 @@ export const ViewBagButton = styled.button`
     padding: 10px 0;
     background: white;
     width: 120px;
+    &:hover {
+        cursor: pointer;
+    }
 `;
 export const CheckOutButton = styled.button`
     border: 2px solid limegreen;
@@ -199,4 +213,7 @@ export const CheckOutButton = styled.button`
     background: limegreen;
     color: white;
     width: 120px;
+    &:hover {
+        cursor: pointer;
+    }
 `;

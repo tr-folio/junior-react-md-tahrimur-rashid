@@ -10,7 +10,8 @@ class ShowTotal extends React.Component {
     }
 
     componentDidMount() {
-        if (localStorage.getItem("totalPrice") !== null) {
+        // localStorage.setItem("totalPrice", "empty");
+        if (localStorage.getItem("totalPrice") !== "empty") {
             let totalPrice = JSON.parse(localStorage.getItem("totalPrice"));
             totalPrice = parseFloat(totalPrice);
             this.setState({totalPrice: totalPrice});
