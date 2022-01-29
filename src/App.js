@@ -174,9 +174,11 @@ class App extends React.Component {
     if (this.state.isMiniCart === false) {
       this.state.isMiniCart = true;
       document.getElementById("show-mini-cart").style.display = 'block';
+      document.body.style.overflow = 'hidden';
     } else {
       this.state.isMiniCart = false;
       document.getElementById("show-mini-cart").style.display = 'none';
+      document.body.style.overflow = 'visible';
     }
   }
 
