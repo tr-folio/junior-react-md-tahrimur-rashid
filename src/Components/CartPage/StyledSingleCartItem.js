@@ -43,18 +43,20 @@ export const CountDiv = styled.div`
 export const PlusButton = styled.button`
     font-size: 24px;
     width: 30px;
-    height: 30px;
+    padding: 1px 0;
     background: white;
     border: 2px solid gray;
 `;
 export const MinusButton = styled.button`
     font-size: 24px;
     width: 30px;
-    height: 30px;
+    padding: 1px 0;
     background: white;
     border: 2px solid gray;
 `;
 export const ImgDiv = styled.div`
+    position: relative;
+    display: block;
     float: left;
     width: 20%;
     height: 100%;
@@ -70,4 +72,13 @@ export const ImgDiv = styled.div`
 export const ProductImg = styled.img`
     width: 150px;
     height: 150px;
+`;
+
+export const ButtonRemove = styled.button`
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: white;
+    border: 2px solid gray;
+    padding: 2px 5px;
 `;

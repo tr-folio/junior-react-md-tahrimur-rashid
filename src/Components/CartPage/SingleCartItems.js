@@ -1,5 +1,5 @@
 import React from "react";
-import { CartAttrubutesButton, CountDiv, ImgDiv, InfoDiv, MinusButton, PlusButton, ProductImg, SingleCartItemDiv } from "./StyledSingleCartItem";
+import { ButtonRemove, CartAttrubutesButton, CountDiv, ImgDiv, InfoDiv, MinusButton, PlusButton, ProductImg, SingleCartItemDiv } from "./StyledSingleCartItem";
 
 class SingleCartItems extends React.Component {
     constructor(props) {
@@ -157,6 +157,7 @@ class SingleCartItems extends React.Component {
                     </CountDiv>
                     <ImgDiv>
                         <ProductImg src={this.state.product.gallery}/>
+                        <ButtonRemove>x</ButtonRemove>
                     </ImgDiv>
                 </SingleCartItemDiv>
             </div>
