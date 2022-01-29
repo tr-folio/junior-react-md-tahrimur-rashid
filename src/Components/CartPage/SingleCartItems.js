@@ -14,7 +14,8 @@ class SingleCartItems extends React.Component {
             prices: [],
             amount: 0,
             isColorAttribute: false,
-            attributes: {}
+            attributes: {},
+            nonAttributes: [1, 2, 3, 4]
         };
     }
 
@@ -62,8 +63,8 @@ class SingleCartItems extends React.Component {
             this.setState({prices: data.data.product.prices});
             // console.log(this.state.prices[0].amount);
             if (data.data.product.attributes !== []) {
-                this.setState({attributes: data.data.product.attributes[0]});
-                this.setState({items: data.data.product.attributes[0].items});
+                this.setState({attributes: data.data.product?.attributes[0]});
+                this.setState({items: data.data.product.attributes[0]?.items});
                 // console.log(this.state.items);
                 if (this.state.attributes?.name === "Color") {
                     this.setState({isColorAttribute: true});
@@ -78,25 +79,13 @@ class SingleCartItems extends React.Component {
                     if (currencySymbol === prices[i].currency.symbol) {
                         this.setState({currencyIndex: i});
                         // console.log(this.state.currencyIndex);
-                        // console.log(this.state.prices[this.state.currencyIndex].amount);
+                        console.log(this.state.prices[this.state.currencyIndex].amount);
                         this.setState({amount: this.state.prices[this.state.currencyIndex].amount})
                         this.setState({activeCurrencySymbol: currencySymbol});
                         // console.log(this.state.activeCurrencySymbol);
                         break;
                     }
                 }
-            }
-        })
-        .then(() => {
-            if (!this.state.isColorAttribute) {
-                const selectedAttributeId = this.props.singleCartItem.attribute+"";
-                // console.log(selectedAttributeId);
-                document.getElementById(selectedAttributeId).style.background = 'black';
-                document.getElementById(selectedAttributeId).style.color = 'white';
-            } else if (this.state.isColorAttribute) {
-                const selectedAttributeId = this.props.singleCartItem.attribute+"";
-                // console.log(selectedAttributeId);
-                document.getElementById(selectedAttributeId).style.border = '2px solid blue';
             }
         })
     }
@@ -150,10 +139,10 @@ class SingleCartItems extends React.Component {
                     <InfoDiv>
                         <h3>{this.props.singleCartItem.name}</h3>
                         <h4>{this.state.activeCurrencySymbol}{this.state.amount}</h4>
-                        <div>
+                        {!(this.props.singleCartItem.attributeName === "") && <div>
                             {this.state.isColorAttribute && <span>{this.state.items.map(item => <Color key={item.id} id={this.props.singleCartItem.attribute} item={item}></Color>)}</span>}
                             {!this.state.isColorAttribute && <span>{this.state.items.map(item => <NonColor key={item.id} id={this.props.singleCartItem.attribute} item={item}></NonColor>)}</span>}
-                        </div>
+                        </div>}
                     </InfoDiv>
                     <CountDiv>
                         <br/>

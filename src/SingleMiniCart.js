@@ -65,7 +65,7 @@ class SingleMiniCart extends React.Component {
             // console.log(this.state.prices[0].amount);
             if (data.data.product.attributes !== []) {
                 this.setState({attributes: data.data.product.attributes[0]});
-                this.setState({items: data.data.product.attributes[0].items});
+                this.setState({items: data.data.product.attributes[0]?.items});
                 // console.log(this.state.items);
                 if (this.state.attributes?.name === "Color") {
                     this.setState({isColorAttribute: true});
@@ -103,18 +103,6 @@ class SingleMiniCart extends React.Component {
                         break;
                     }
                 }
-            }
-        })
-        .then(() => {
-            if (!this.state.isColorAttribute) {
-                const selectedAttributeId = this.props.singleCartItem.attribute+"";
-                // console.log(selectedAttributeId);
-                document.getElementById(selectedAttributeId).style.background = 'black';
-                document.getElementById(selectedAttributeId).style.color = 'white';
-            } else if (this.state.isColorAttribute) {
-                const selectedAttributeId = this.props.singleCartItem.attribute+"";
-                // console.log(selectedAttributeId);
-                document.getElementById(selectedAttributeId).style.border = '2px solid blue';
             }
         })
         const temporary_cart = JSON.parse(localStorage.getItem("shoppingCart"));
@@ -166,10 +154,10 @@ class SingleMiniCart extends React.Component {
                     <InfoDiv>
                         <h3>{this.props.singleCartItem.name}</h3>
                         <h4>{this.state.activeCurrencySymbol}{this.state.amount}</h4>
-                        <div>
+                        {!(this.props.singleCartItem.attributeName === "") && <div>
                             {this.state.isColorAttribute && <span>{this.state.items.map(item => <Color key={item.id} id={this.props.singleCartItem.attribute} item={item}></Color>)}</span>}
                             {!this.state.isColorAttribute && <span>{this.state.items.map(item => <NonColor key={item.id} id={this.props.singleCartItem.attribute} item={item}></NonColor>)}</span>}
-                        </div>
+                        </div>}
                     </InfoDiv>
                     <CountDiv>
                         <br/>
