@@ -191,7 +191,7 @@ export const MiniCartDiv = styled.div`
     background: white;
     padding: 10px;
     height: 400px;
-    overflow-y: scroll;
+    overflow-y: auto;
 `;
 
 export const MiniCartP = styled.p`
