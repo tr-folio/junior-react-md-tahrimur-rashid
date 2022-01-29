@@ -1,7 +1,7 @@
 import React from "react";
 import Color from "./Color";
 import NonColor from "./NonColor";
-import { ButtonRemove, CartAttrubutesButton, CountDiv, ImgDiv, InfoDiv, MinusButton, PlusButton, ProductImg, SingleCartItemDiv } from "./StyledSingleCartItem";
+import { ButtonRemove, CountDiv, ImgDiv, InfoDiv, MinusButton, PlusButton, ProductImg, SingleCartItemDiv } from "./StyledSingleCartItem";
 
 class SingleCartItems extends React.Component {
     constructor(props) {

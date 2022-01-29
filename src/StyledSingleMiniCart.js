@@ -14,14 +14,6 @@ export const InfoDiv = styled.div`
     text-align: left;
 `;
 
-export const CartAttrubutesButton = styled.button`
-    border: 2px solid black;
-    background: white;
-    padding: 5px;
-    margin-right: 2px;
-    margin-bottom: 2px;
-`;
-
 export const CountDiv = styled.div`
     float: left;
     width: 30px;
