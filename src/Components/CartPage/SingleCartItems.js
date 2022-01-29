@@ -129,6 +129,18 @@ class SingleCartItems extends React.Component {
         window.location.reload();
     }
 
+    removeItemFromCart(id) {
+        const temporary_cart = JSON.parse(localStorage.getItem("shoppingCart"));
+        for (let i=0; i<temporary_cart.length; i++) {
+            if (temporary_cart[i].id === id) {
+                temporary_cart.splice(i, 1);
+                localStorage.removeItem("shoppingCart");
+                localStorage.setItem("shoppingCart", JSON.stringify(temporary_cart));
+                window.location.reload();
+            }
+        }
+    }
+
     render() {
         return (
             <div>
@@ -157,7 +169,7 @@ class SingleCartItems extends React.Component {
                     </CountDiv>
                     <ImgDiv>
                         <ProductImg src={this.state.product.gallery}/>
-                        <ButtonRemove>x</ButtonRemove>
+                        <ButtonRemove onClick={() => this.removeItemFromCart(this.props.singleCartItem.id)}>x</ButtonRemove>
                     </ImgDiv>
                 </SingleCartItemDiv>
             </div>

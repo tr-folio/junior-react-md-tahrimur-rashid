@@ -81,4 +81,7 @@ export const ButtonRemove = styled.button`
     background: white;
     border: 2px solid gray;
     padding: 2px 5px;
+    &:hover {
+        cursor: pointer;
+    }
 `;
