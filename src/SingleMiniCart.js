@@ -1,4 +1,6 @@
 import React from "react";
+import Color from "./Components/CartPage/Color";
+import NonColor from "./Components/CartPage/NonColor";
 import { CartAttrubutesButton, CountDiv, ImgDiv, InfoDiv, MinusButton, PlusButton, ProductImg, SingleCartItemDiv } from "./StyledSingleMiniCart";
 
 class SingleMiniCart extends React.Component {
@@ -164,8 +166,10 @@ class SingleMiniCart extends React.Component {
                         <h3>{this.props.singleCartItem.name}</h3>
                         <h4>{this.state.activeCurrencySymbol}{this.state.amount}</h4>
                         <div>
-                            {this.state.isColorAttribute && <span>{this.state.items.map(item => <CartAttrubutesButton key={item.id} id={item.displayValue} style={{background: `${item.value}`}}></CartAttrubutesButton>)}</span>}
-                            {!this.state.isColorAttribute && <span>{this.state.items.map(item => <CartAttrubutesButton key={item.id} id={item.displayValue}>{item.displayValue}</CartAttrubutesButton>)}</span>}
+                            {/* {this.state.isColorAttribute && <span>{this.state.items.map(item => <CartAttrubutesButton key={item.id} id={item.displayValue} style={{background: `${item.value}`}}></CartAttrubutesButton>)}</span>}
+                            {!this.state.isColorAttribute && <span>{this.state.items.map(item => <CartAttrubutesButton key={item.id} id={item.displayValue}>{item.displayValue}</CartAttrubutesButton>)}</span>} */}
+                            {this.state.isColorAttribute && <span>{this.state.items.map(item => <Color key={item.id} id={this.props.singleCartItem.attribute} item={item}></Color>)}</span>}
+                            {!this.state.isColorAttribute && <span>{this.state.items.map(item => <NonColor key={item.id} id={this.props.singleCartItem.attribute} item={item}></NonColor>)}</span>}
                         </div>
                     </InfoDiv>
                     <CountDiv>
