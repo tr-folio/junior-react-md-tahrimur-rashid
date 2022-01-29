@@ -125,10 +125,10 @@ class AddToCart extends React.Component {
     selectColorAttribute(id) {
         for (let i=0; i<this.state.items.length; i++) {
             if (this.state.items[i].id === id) {
-                document.getElementById(this.state.items[i].id).style.border = '2px solid blue';
+                document.getElementById(this.state.items[i].id).style.boxShadow = '0 4px 8px 0 rgba(0, 0, 0, 0.8), 0 6px 20px 0 rgba(0, 0, 0, 0.79)';
                 localStorage.setItem("selectedAttribute", this.state.items[i].displayValue);
             } else {
-                document.getElementById(this.state.items[i].id).style.border = '2px solid black';
+                document.getElementById(this.state.items[i].id).style.boxShadow = '0 4px 8px 0 rgba(255, 255, 255, 0), 0 6px 20px 0 rgba(255, 255, 255, 0)';
             }
         }
     }

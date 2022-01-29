@@ -21,13 +21,6 @@ export const InfoDiv = styled.div`
     }
 `;
 
-export const CartAttrubutesButton = styled.button`
-    border: 2px solid black;
-    background: white;
-    padding: 10px;
-    margin-right: 10px;
-`;
-
 export const CountDiv = styled.div`
     float: left;
     width: 10%;
